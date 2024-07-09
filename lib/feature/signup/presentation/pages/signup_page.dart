@@ -100,152 +100,152 @@ class _SignUpState extends ConsumerState<SignupPage> {
     });
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      body: Center(
-        child: Form(
-          key: _formKey,
-          autovalidateMode: AutovalidateMode.disabled,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.message,
-                size: 60,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              const SizedBox(height: 50),
-              Text(
-                "Let's create an account for you",
-                style: TextStyle(
+      body: SingleChildScrollView(
+        child: Center(
+          child: Form(
+            key: _formKey,
+            autovalidateMode: AutovalidateMode.disabled,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 50),
+                Icon(
+                  Icons.message,
+                  size: 60,
                   color: Theme.of(context).colorScheme.primary,
-                  fontSize: 16,
                 ),
-              ),
-              const SizedBox(height: 25),
-              MyTextfield(
-                hintText: 'User Name',
-                obscureText: false,
-                controller: _userName,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'User name is required';
-                  }
-                  return null;
-                },
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-              ),
-              const SizedBox(height: 25),
-              MyTextfield(
-                hintText: 'Email',
-                obscureText: false,
-                controller: _emailController,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Email is required';
-                  }
-                  return null;
-                },
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-              ),
-              const SizedBox(height: 25),
-              MyTextfield(
-                hintText: 'Password',
-                obscureText: true,
-                controller: _passwordController,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Password is required';
-                  }
-                  if (value.length < 6) {
-                    return 'Password must be at least 6 characters long';
-                  }
-                  return null;
-                },
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-              ),
-              const SizedBox(height: 25),
-              MyTextfield(
-                hintText: 'Confirm Password',
-                obscureText: true,
-                controller: _confirmPasswordController,
-                validator: (value) {
-                  if (value!.isNotEmpty &&
-                      _passwordController.text.isNotEmpty) {
-                    if (value != _passwordController.text) {
-                      return "Password and confirm password doesn't match";
+                const SizedBox(height: 50),
+                Text(
+                  "Let's create an account for you",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 25),
+                MyTextfield(
+                  hintText: 'User Name',
+                  obscureText: false,
+                  controller: _userName,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'User name is required';
                     }
-                  }
-                  if (value.isEmpty) {
-                    return 'Password is required';
-                  }
-                  if (value.length < 6) {
-                    return 'Password must be at least 6 characters long';
-                  }
-                  return null;
-                },
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-              ),
-              const SizedBox(height: 25),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.only(left: 30, right: 30),
-                child: ElevatedButton(
-                  onPressed: (isButtonEnable)
-                      ? () {
-                          if (_formKey.currentState!.validate()) {
-                            ref.read(signUpControllerProvider.notifier).signUp(
-                                  UserData(
-                                    name: _userName.text,
-                                    email: _emailController.text,
-                                    password: _passwordController.text,
-                                  ),
-                                );
-                          }
-                        }
-                      : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
-                    minimumSize: const Size(double.infinity, 50),
-                  ),
-                  child: state.isLoading
-                      ? const CircularProgressIndicator(
-                          backgroundColor: Colors.white10,
-                        )
-                      : Text(
-                          'SignUp',
-                          style: !isButtonEnable
-                              ? Theme.of(context).textTheme.titleMedium
-                              : Theme.of(context).textTheme.titleSmall,
-                        ),
+                    return null;
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-              ),
-              const SizedBox(height: 25),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Already have an account? ",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
+                const SizedBox(height: 25),
+                MyTextfield(
+                  hintText: 'Email',
+                  obscureText: false,
+                  controller: _emailController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Email is required';
+                    }
+                    return null;
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+                const SizedBox(height: 25),
+                MyTextfield(
+                  hintText: 'Password',
+                  obscureText: true,
+                  controller: _passwordController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Password is required';
+                    }
+                    if (value.length < 6) {
+                      return 'Password must be at least 6 characters long';
+                    }
+                    return null;
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+                const SizedBox(height: 25),
+                MyTextfield(
+                  hintText: 'Confirm Password',
+                  obscureText: true,
+                  controller: _confirmPasswordController,
+                  validator: (value) {
+                    if (value!.isNotEmpty &&
+                        _passwordController.text.isNotEmpty) {
+                      if (value != _passwordController.text) {
+                        return "Password and confirm password doesn't match";
+                      }
+                    }
+                    if (value.isEmpty) {
+                      return 'Password is required';
+                    }
+                    if (value.length < 6) {
+                      return 'Password must be at least 6 characters long';
+                    }
+                    return null;
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+                const SizedBox(height: 25),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.only(left: 30, right: 30),
+                  child: ElevatedButton(
+                    onPressed: (isButtonEnable)
+                        ? () {
+                            if (_formKey.currentState!.validate()) {
+                              ref.read(signUpControllerProvider.notifier).signUp(
+                                    UserData(
+                                      name: _userName.text,
+                                      email: _emailController.text,
+                                      password: _passwordController.text,
+                                    ),
+                                  );
+                            }
+                          }
+                        : null,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                      minimumSize: const Size(double.infinity, 50),
                     ),
+                    child: state.isLoading
+                        ? const CircularProgressIndicator(
+                            backgroundColor: Colors.white10,
+                          )
+                        : Text(
+                            'SignUp',
+                            style: !isButtonEnable
+                                ? Theme.of(context).textTheme.titleMedium
+                                : Theme.of(context).textTheme.titleSmall,
+                          ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      context.go(RoutesName.login);
-                    },
-                    child: Text(
-                      "LogIn",
+                ),
+                const SizedBox(height: 25),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Already have an account? ",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
                         color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.only(left: 35, right: 35),
-                child: Row(
+                    GestureDetector(
+                      onTap: () {
+                        context.go(RoutesName.login);
+                      },
+                      child: Text(
+                        "LogIn",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
@@ -268,30 +268,30 @@ class _SignUpState extends ConsumerState<SignupPage> {
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 30),
-              SizedBox(
-                height: 40,
-                width: 190,
-                child: SignInButton(
-                  Buttons.google,
-                  onPressed: () async {
-                    final userCredential =
-                        await MyGoogleSignIn().signInWithGoogle();
-                    if (userCredential != null) {
-                      final user = userCredential.user;
-                      ref
-                          .read(signUpControllerProvider.notifier)
-                          .saveGoogleUser(user: user);
-                      print(user!.photoURL);
-                      context.go(RoutesName.home);
-                    } else {
-                      print("SignIn failed!");
-                    }
-                  },
+                const SizedBox(height: 30),
+                SizedBox(
+                  height: 40,
+                  width: 190,
+                  child: SignInButton(
+                    Buttons.google,
+                    onPressed: () async {
+                      final userCredential =
+                          await MyGoogleSignIn().signInWithGoogle();
+                      if (userCredential != null) {
+                        final user = userCredential.user;
+                        ref
+                            .read(signUpControllerProvider.notifier)
+                            .saveGoogleUser(user: user);
+                        print(user!.photoURL);
+                        context.go(RoutesName.home);
+                      } else {
+                        print("SignIn failed!");
+                      }
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

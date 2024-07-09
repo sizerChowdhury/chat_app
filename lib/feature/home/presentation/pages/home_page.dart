@@ -135,11 +135,11 @@ class _HomeScreenState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                          userData['photoUrl'],
-                        ),
-                      ),
+                      // leading: CircleAvatar(
+                      //   backgroundImage: NetworkImage(
+                      //     userData['photoUrl'],
+                      //   ),
+                      // ),
                       title: Row(
                         children: [
                           Text(

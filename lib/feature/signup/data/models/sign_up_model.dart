@@ -5,14 +5,28 @@ class SignUpModel extends SignUpEntity {
   SignUpModel({
     required super.user,
   });
+
   static Map<String, dynamic> toMap({required User user}) {
-    return {
-      'name': user.displayName,
-      'email': user.email,
-      'uid': user.uid,
-      'groupId': '',
-      'isActive': true,
-      'photoUrl':user.photoURL,
-    };
+    if(user.photoURL == null){
+      return {
+        'name': user.displayName,
+        'email': user.email,
+        'uid': user.uid,
+        'groupId': '',
+        'isActive': true,
+        'photoUrl':
+        'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
+      };
+    }
+    else {
+      return {
+        'name': user.displayName,
+        'email': user.email,
+        'uid': user.uid,
+        'groupId': '',
+        'isActive': true,
+        'photoUrl': user.photoURL,
+      };
+    }
   }
 }
