@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomePage> {
                   }
 
                   Map<String, dynamic> userData =
-                      snapshot.data!.data() as Map<String, dynamic>;
+                  snapshot.data!.data() as Map<String, dynamic>;
 
                   return Container(
                     margin: EdgeInsets.only(top: 1, left: 2, right: 2),
@@ -153,49 +153,49 @@ class _HomeScreenState extends State<HomePage> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50),
                               color:
-                                  (userData['isActive']) ? Colors.green : null,
+                              (userData['isActive']) ? Colors.green : null,
                             ),
                           ),
                         ],
                       ),
                       subtitle: chatRoomsData[index]['type'] == 'text'
                           ? Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    chatRoomsData[index]['message'],
-                                    maxLines: 1,
-                                    style:
-                                        Theme.of(context).textTheme.titleMedium,
-                                  ),
-                                ),
-                                const Spacer(),
-                                Text(
-                                  formattedTime,
-                                  style: TextStyle(
-                                    color: Colors.blueGrey,
-                                  ),
-                                ),
-                              ],
-                            )
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "image",
-                                  style: TextStyle(
-                                    color: Colors.blueGrey,
-                                  ),
-                                ),
-                                Text(
-                                  formattedTime,
-                                  style: TextStyle(
-                                    color: Colors.blueGrey,
-                                  ),
-                                ),
-                              ],
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              chatRoomsData[index]['message'],
+                              maxLines: 1,
+                              style:
+                              Theme.of(context).textTheme.titleMedium,
                             ),
+                          ),
+                          const Spacer(),
+                          Text(
+                            formattedTime,
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ],
+                      )
+                          : Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "image",
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                          Text(
+                            formattedTime,
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ],
+                      ),
                       onTap: () {
                         Navigator.push(
                           context,
@@ -203,7 +203,7 @@ class _HomeScreenState extends State<HomePage> {
                             builder: (context) => ChatPage(
                               receiverID: chatRoomsData[index]['receiverID'],
                               receiverName: chatRoomsData[index]
-                                  ['receiverName'],
+                              ['receiverName'],
                               isActive: userData['isActive'],
                               photoUrl: userData['photoUrl'],
                               senderName: FirebaseAuth
@@ -268,8 +268,8 @@ class UserSearchDelegate extends SearchDelegate<User> {
           .where('name', isLessThanOrEqualTo: query + '\uf8ff')
           .snapshots()
           .map((querySnapshot) => querySnapshot.docs
-              .map((doc) => UserData.fromFirestore(doc))
-              .toList()),
+          .map((doc) => UserData.fromFirestore(doc))
+          .toList()),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
@@ -297,7 +297,7 @@ class UserSearchDelegate extends SearchDelegate<User> {
                       isActive: user.isActive!,
                       photoUrl: user.photoUrl!,
                       senderName:
-                          FirebaseAuth.instance.currentUser!.displayName!,
+                      FirebaseAuth.instance.currentUser!.displayName!,
                     ), // Pass user name to ChatPage
                   ),
                 );
